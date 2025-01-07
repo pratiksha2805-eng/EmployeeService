@@ -42,7 +42,7 @@ app.post("/secure-transfer", csrfProtection, (req, res) => {
     const { amount, recipient } = req.body;
 
     // CSRF token validation happens automatically
-    console.log(`Securely transferring ${amount} to ${recipient}`);
+    //console.log(`Securely transferring ${amount} to ${recipient}`);
     res.status(200).send("Secure transfer completed.");
 });
 
