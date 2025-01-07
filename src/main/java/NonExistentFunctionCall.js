@@ -13,7 +13,7 @@ try {
 
     // Incorrect: Attempting to call a variable as a function
     const notAFunction = "This is a string";
-    notAFunction();
+    //notAFunction();
 
     // Incorrect: Calling a function that was never declared
     undefinedFunction();
