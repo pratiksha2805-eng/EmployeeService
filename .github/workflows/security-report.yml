@@ -47,7 +47,7 @@ jobs:
         server_address: smtp.gmail.com
         server_port: 587
         username: ${{ secrets.SMTP_USERNAME }}
-        password: ${{ secrets.SMTP_PASSWORD }}
+        password: ${{ secrets.SMTP_APP_PASSWORD }}
         subject: "Weekly Security Report"
         body: "Security reports attached."
         to: "sony2887@gmail.com"
