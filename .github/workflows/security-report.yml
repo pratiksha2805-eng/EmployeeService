@@ -46,4 +46,4 @@ jobs:
     #     body: "Security reports attached."
     #     to: "sony2887@gmail.com"
     #     from: "pratikshatiwari2805@gmail.com"
-    #     attachments: code_scanning_report.json, dependabot_report.json
+    #     attachments: code_scanning_report.json, dependabot_report.json 
