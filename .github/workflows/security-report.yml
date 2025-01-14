@@ -27,12 +27,16 @@ jobs:
     - name: Check API Rate Limit
       run: gh api rate_limit
 
-    
-    - name: Analyze Security Alerts
+    - name: Fetch Code Scanning Alerts with Retry
       run: |
-        echo "Fetching code scanning alerts..."
-        gh auth status
-        gh api repos/${{ github.repository }}/code-scanning/alerts --paginate > code_scanning_report.json
+        for i in {1..5}; do
+          gh api repos/pratiksha2805-eng/EmployeeService/code-scanning/alerts --paginate > code_scanning_report.json && break || sleep 60
+        done
+    # - name: Analyze Security Alerts
+    #   run: |
+    #     echo "Fetching code scanning alerts..."
+    #     gh auth status
+    #     gh api repos/${{ github.repository }}/code-scanning/alerts --paginate > code_scanning_report.json
         # gh api repos/${{ github.repository }}/dependabot/alerts > dependabot_report.json
 
     # - name: Send Email Report
