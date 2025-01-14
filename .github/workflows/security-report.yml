@@ -1,0 +1,31 @@
+name: Generate Security Report
+
+on:
+  schedule:
+    - cron: '0 9 * * 1'  # Runs every Monday at 9:00 AM UTC
+  workflow_dispatch:  # Allow manual trigger
+
+jobs:
+  security_report:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Analyze Security Alerts
+      run: |
+        gh api repos/:owner/:repo/code-scanning/alerts > code_scanning_report.json
+        gh api repos/:owner/:repo/dependabot/alerts > dependabot_report.json
+
+    - name: Send Email Report
+      uses: dawidd6/action-send-mail@v3
+      with:
+        server_address: smtp.gmail.com
+        server_port: 587
+        username: ${{ secrets.SMTP_USERNAME }}
+        password: ${{ secrets.SMTP_PASSWORD }}
+        subject: "Weekly Security Report"
+        body: "Security reports attached."
+        to: "sony2887@gmail.com"
+        from: "pratikshatiwari2805@gmail.com"
+        attachments: code_scanning_report.json, dependabot_report.json
