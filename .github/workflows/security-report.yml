@@ -41,15 +41,15 @@ jobs:
     #     gh api repos/${{ github.repository }}/code-scanning/alerts --paginate > code_scanning_report.json
         # gh api repos/${{ github.repository }}/dependabot/alerts > dependabot_report.json
 
-    # - name: Send Email Report
-    #   uses: dawidd6/action-send-mail@v3
-    #   with:
-    #     server_address: smtp.gmail.com
-    #     server_port: 587
-    #     username: ${{ secrets.SMTP_USERNAME }}
-    #     password: ${{ secrets.SMTP_PASSWORD }}
-    #     subject: "Weekly Security Report"
-    #     body: "Security reports attached."
-    #     to: "sony2887@gmail.com"
-    #     from: "pratikshatiwari2805@gmail.com"
-    #     attachments: code_scanning_report.json, dependabot_report.json 
+    - name: Send Email Report
+      uses: dawidd6/action-send-mail@v3
+      with:
+        server_address: smtp.gmail.com
+        server_port: 587
+        username: ${{ secrets.SMTP_USERNAME }}
+        password: ${{ secrets.SMTP_PASSWORD }}
+        subject: "Weekly Security Report"
+        body: "Security reports attached."
+        to: "sony2887@gmail.com"
+        from: "pratikshatiwari10042@gmail.com"
+        attachments: code_scanning_report.json, dependabot_report.json 
