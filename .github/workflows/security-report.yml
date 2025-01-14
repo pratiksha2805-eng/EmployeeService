@@ -29,9 +29,8 @@ jobs:
 
     - name: Fetch Code Scanning Alerts with Retry
       run: |
-        for i in {1..5}; do
-          gh api repos/pratiksha2805-eng/EmployeeService/code-scanning/alerts --paginate > code_scanning_report.json && break || sleep 60
-        done
+        curl -H "Authorization: token ${{ secrets.MY_GIT_TOKEN }}" \
+        https://api.github.com/repos/pratiksha2805-eng/EmployeeService/code-scanning/alerts > code_scanning_report.json
     # - name: Analyze Security Alerts
     #   run: |
     #     echo "Fetching code scanning alerts..."
