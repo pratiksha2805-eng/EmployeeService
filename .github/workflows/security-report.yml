@@ -38,6 +38,10 @@ jobs:
     #     gh api repos/${{ github.repository }}/code-scanning/alerts --paginate > code_scanning_report.json
         # gh api repos/${{ github.repository }}/dependabot/alerts > dependabot_report.json
 
+    - name: Get Rate Limit 
+      run: |
+        curl -L -H "Accept: application/vnd.github+json" -H "Authorization: Bearer ${{ secrets.GIT_TOKEN }}" https://api.github.com/rate_limit
+    
     - name: List Report 
       run: |
         curl -L -H "Accept: application/vnd.github+json" -H "Authorization: Bearer ${{ secrets.GIT_TOKEN }}" https://api.github.com/repos/pratiksha2805-eng/EmployeeService/code-scanning/alerts --paginate
