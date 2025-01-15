@@ -55,7 +55,7 @@ jobs:
     
     - name: List Report 
       run: |
-        curl -L -H "Accept: application/vnd.github+json" -H "Authorization: Bearer ${{ secrets.GIT_TOKEN }}" https://api.github.com/repos/pratiksha2805-eng/EmployeeService/code-scanning/alerts --paginate
+        curl -L -H "Accept: application/vnd.github+json" -H "Authorization: Bearer ${{ secrets.GIT_TOKEN }}" https://api.github.com/repos/pratiksha2805-eng/EmployeeService/code-scanning/alerts 
 
     - name: Send Email Report
       uses: dawidd6/action-send-mail@v3
