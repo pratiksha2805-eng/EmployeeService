@@ -55,7 +55,8 @@ jobs:
     
     - name: List Report 
       run: |
-        curl --retry 5 --retry-all-errors --retry-delay 0 --retry-max-time 120 --connect-timeout 5 --max-time 10 -L -H "Accept: application/vnd.github+json" -H "Authorization: Bearer ${{ secrets.GIT_TOKEN }}" https://api.github.com/repos/pratiksha2805-eng/EmployeeService/code-scanning/alerts 
+        curl -H "Authorization: Bearer ${{ secrets.GIT_TOKEN }}" -I https://api.github.com/repos/pratiksha2805-eng/EmployeeService/code-scanning/alerts
+
 
     - name: Send Email Report
       uses: dawidd6/action-send-mail@v3
