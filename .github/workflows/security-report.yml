@@ -28,9 +28,9 @@ jobs:
 
     - name: Fetch Code Scanning Alerts with Retry
       run: |
-        curl -H "Authorization: token ${{ secrets.MY_GIT_TOKEN }}" \
+        curl -H "Authorization: token ${{ secrets.GIT_TOKEN }}" \
         https://api.github.com/repos/pratiksha2805-eng/EmployeeService/code-scanning/alerts > code_scanning_report.json
-        curl -H "Authorization: token ${{ secrets.MY_GIT_TOKEN }}" \
+        curl -H "Authorization: token ${{ secrets.GIT_TOKEN }}" \
         https://api.github.com/repos/pratiksha2805-eng/EmployeeService/dependabot/alerts > dependabot_report.json
         
     # - name: Analyze Security Alerts
