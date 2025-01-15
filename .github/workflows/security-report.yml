@@ -38,6 +38,10 @@ jobs:
     #     gh api repos/${{ github.repository }}/code-scanning/alerts --paginate > code_scanning_report.json
         # gh api repos/${{ github.repository }}/dependabot/alerts > dependabot_report.json
 
+    - name: List Report 
+      run: |
+        curl -L   -H "Accept: application/vnd.github+json"   -H "Authorization: Bearer ${{ secrets.GIT_TOKEN }}" repos/${{ github.repository }}/code-scanning/alerts
+
     - name: Send Email Report
       uses: dawidd6/action-send-mail@v3
       with:
