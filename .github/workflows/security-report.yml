@@ -1,4 +1,4 @@
-name: Generate Security Report 
+name: Generate Security Report
 on:
   push:
     branches:
