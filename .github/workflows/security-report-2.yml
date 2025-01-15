@@ -1,0 +1,47 @@
+name: Security Dashboard Report
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+jobs:
+  fetch-security-report:
+    runs-on: ubuntu-latest
+
+    env:
+      GH_TOKEN: ${{ secrets.GIT_TOKEN }}
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Fetch Security Dashboard Report
+      id: fetch-report
+      run: |
+        curl -X GET \
+        -H "Authorization: Bearer ${{ secrets.GH_TOKEN }}" \
+        -H "Accept: application/vnd.github+json" \
+        curl -H "Authorization: token ${{ secrets.MY_GIT_TOKEN }}" \
+        https://api.github.com/repos/pratiksha2805-eng/EmployeeService/code-scanning/alerts \
+        -o security_report.json
+        echo "Report fetched and saved to security_report.json"
+
+    - name: Compress Report (Optional)
+      run: gzip security_report.json
+
+    - name: Send Email with Report
+      uses: dawidd6/action-send-mail@v3
+      with:
+        server_address: smtp.gmail.com
+        server_port: 587
+        username: ${{ secrets.SMTP_USERNAME }}
+        password: ${{ secrets.SMTP_PASSWORD }}
+        subject: GitHub Security Dashboard Report
+        body: |
+          Please find attached the latest security report.
+        to: sony2887@gmail.com
+        from: pratikshatiwari10042@gmail.com
+        attachments: security_report.json.gz
