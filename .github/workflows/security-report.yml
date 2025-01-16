@@ -24,7 +24,9 @@ jobs:
       run: gh auth login --with-token <<< "${GIT_TOKEN}"
 
     - name: Check API Rate Limit
-      run: gh api rate_limit
+      run: |
+        gh api rate_limit
+        gh api -H "Accept: application/vnd.github+json" https://api.github.com/repos/pratiksha2805-eng/EmployeeService/code-scanning/alerts
 
     - name: Fetch Code Scanning Alerts with Retry
       run: |
@@ -55,7 +57,7 @@ jobs:
     
     - name: List Report 
       run: |
-        curl -H "Authorization: Bearer ${{ secrets.GIT_TOKEN }}" -I https://api.github.com/repos/pratiksha2805-eng/EmployeeService/code-scanning/alerts?per_page=10&page=1
+        curl -H "Authorization: Bearer ${{ secrets.GIT_TOKEN }}" -I https://api.github.com/repos/pratiksha2805-eng/EmployeeService/code-scanning/alerts?per_page=1&page=1
 
 
     - name: Send Email Report
