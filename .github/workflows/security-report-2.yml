@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-      GH_TOKEN: ${{ secrets.GIT_TOKEN }}
+      GIT_TOKEN: ${{ secrets.GIT_TOKEN }}
 
     steps:
     - name: Checkout code
@@ -22,12 +22,15 @@ jobs:
       id: fetch-report
       run: |
         curl -X GET \
-        -H "Authorization: Bearer ${{ secrets.GH_TOKEN }}" \
+        -H "Authorization: Bearer ${{ secrets.GIT_TOKEN }}" \
         -H "Accept: application/vnd.github+json" \
-        curl -H "Authorization: token ${{ secrets.MY_GIT_TOKEN }}" \
+        curl -H "Authorization: token ${{ secrets.GIT_TOKEN }}" \
         https://api.github.com/repos/pratiksha2805-eng/EmployeeService/code-scanning/alerts \
         -o security_report.json
         echo "Report fetched and saved to security_report.json"
+
+    - name: List Report 
+      run: cat security_report.json
 
     - name: Compress Report (Optional)
       run: gzip security_report.json
