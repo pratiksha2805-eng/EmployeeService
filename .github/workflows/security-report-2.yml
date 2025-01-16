@@ -29,9 +29,7 @@ jobs:
         -o security_report.json
         echo "Report fetched and saved to security_report.json"
 
-    - name: List Report 
-      run: cat security_report.json
-
+   
     - name: Compress Report (Optional)
       run: gzip security_report.json
 
