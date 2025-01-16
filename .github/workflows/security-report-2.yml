@@ -21,7 +21,7 @@ jobs:
     - name: Fetch Security Dashboard Report
       id: fetch-report
       run: |
-        curl -H "Authorization: token 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" https://api.github.com/repos/pratiksha2805-eng/EmployeeService/code-scanning/alerts
+        curl -H "Authorization: token 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" https://api.github.com/repos/pratiksha2805-eng/EmployeeService/code-scanning/alerts
 
 
    
