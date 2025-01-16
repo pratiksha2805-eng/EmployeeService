@@ -24,7 +24,7 @@ jobs:
       run: |
         gh auth login --with-token <<< "${GIT_TOKEN}"
         gh auth status
-        gh api -H "Accept: application/vnd.github+json" https://api.github.com/repos/pratiksha2805-eng/EmployeeService/code-scanning/alerts
+        gh api -H "Accept: application/vnd.github+json"  -H "Authorization: token ${{ secrets.GIT_TOKEN }}" https://api.github.com/repos/pratiksha2805-eng/EmployeeService/code-scanning/alerts
 
     - name: Check API Rate Limit
       run: |
