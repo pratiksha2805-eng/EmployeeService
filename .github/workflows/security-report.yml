@@ -35,8 +35,8 @@ jobs:
 
     - name: Fetch Code Scanning Alerts with Retry
       run: |
-        curl -H "Authorization: token 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" https://api.github.com/repos/pratiksha2805-eng/EmployeeService/code-scanning/alerts > code_scanning_report.json
-        # curl -H "Authorization: token ${{ secrets.GIT_TOKEN }}" https://api.github.com/repos/pratiksha2805-eng/EmployeeService/dependabot/alerts > dependabot_report.json
+        curl -H "Authorization: token ${{ secrets.GIT_TOKEN }}" https://api.github.com/repos/pratiksha2805-eng/EmployeeService/code-scanning/alerts > code_scanning_report.json
+        curl -H "Authorization: token ${{ secrets.GIT_TOKEN }}" https://api.github.com/repos/pratiksha2805-eng/EmployeeService/dependabot/alerts > dependabot_report.json
         
 
 
@@ -57,7 +57,7 @@ jobs:
     
     - name: List Report 
       run: |
-        curl -H "Authorization: Bearer ${{ secrets.GIT_TOKEN }}" -I https://api.github.com/repos/pratiksha2805-eng/EmployeeService/code-scanning/alerts?per_page=1&page=1
+        curl -H "Authorization: Bearer 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" -I https://api.github.com/repos/pratiksha2805-eng/EmployeeService/code-scanning/alerts
 
 
     - name: Send Email Report
