@@ -26,7 +26,9 @@ jobs:
     - name: Check API Rate Limit
       run: |
         gh api rate_limit
-        gh api -H "Accept: application/vnd.github+json" https://api.github.com/repos/pratiksha2805-eng/EmployeeService/code-scanning/alerts
+        gh api -H "Accept: application/vnd.github+json" /rate_limit
+
+        #gh api -H "Accept: application/vnd.github+json" https://api.github.com/repos/pratiksha2805-eng/EmployeeService/code-scanning/alerts
 
     - name: Fetch Code Scanning Alerts with Retry
       run: |
