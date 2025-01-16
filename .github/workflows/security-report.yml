@@ -24,7 +24,7 @@ jobs:
       run: |
         gh auth login --with-token <<< "${GIT_TOKEN}"
         gh auth status
-        gh api -H "Accept: application/vnd.github+json"  -H "Authorization: token ${{ secrets.GIT_TOKEN }}" https://api.github.com/repos/pratiksha2805-eng/EmployeeService/code-scanning/alerts
+        #gh api -H "Accept: application/vnd.github+json"  -H "Authorization: token ${{ secrets.GIT_TOKEN }}" https://api.github.com/repos/pratiksha2805-eng/EmployeeService/code-scanning/alerts
 
     - name: Check API Rate Limit
       run: |
@@ -35,7 +35,7 @@ jobs:
 
     - name: Fetch Code Scanning Alerts with Retry
       run: |
-        curl -H "Authorization: token ${{ secrets.GIT_TOKEN }}" https://api.github.com/repos/pratiksha2805-eng/EmployeeService/code-scanning/alerts > code_scanning_report.json
+        curl -H "Authorization: token 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" https://api.github.com/repos/pratiksha2805-eng/EmployeeService/code-scanning/alerts > code_scanning_report.json
         curl -H "Authorization: token ${{ secrets.GIT_TOKEN }}" https://api.github.com/repos/pratiksha2805-eng/EmployeeService/dependabot/alerts > dependabot_report.json
         
     # - name: Analyze Security Alerts
