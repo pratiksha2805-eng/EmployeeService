@@ -24,6 +24,8 @@ jobs:
         curl -H "Authorization: token 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" https://api.github.com/repos/pratiksha2805-eng/EmployeeService/code-scanning/alerts
         curl -H "Authorization: token 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" https://api.github.com/user
         curl -H "Authorization: token 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" https://api.github.com/user
+        curl -H "Authorization: token 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" https://api.github.com/orgs/pratiksha2805-eng
+
 
 
    
