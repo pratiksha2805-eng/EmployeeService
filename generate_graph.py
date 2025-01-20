@@ -7,9 +7,12 @@ def load_json(file_path):
     try:
         with open(file_path, "r") as file:
             data = json.load(file)
-            if not isinstance(data, list):
-                raise ValueError("Expected a list of alerts in the JSON file.")
-            return data
+            if isinstance(data, dict) and "alerts" in data:  # Adjust for nested structure
+                return data["alerts"]
+            elif isinstance(data, list):
+                return data
+            else:
+                raise ValueError("Expected a list of alerts or a dictionary with an 'alerts' key.")
     except json.JSONDecodeError as e:
         print(f"Error decoding JSON: {e}")
         return []
