@@ -6,7 +6,7 @@ import dash
 from dash import dcc, html
 
 # Set GitHub Token and Repository Details
-GITHUB_TOKEN = os.getenv("GITHUB_TOKEN")  # Set as an environment variable
+GITHUB_TOKEN = os.getenv("GIT_TOKEN")  # Set as an environment variable
 OWNER = "pratiksha2805-eng"  # Replace with the GitHub organization or username
 REPO = "EmployeeService"           # Replace with the repository name
 API_URL = f"https://api.github.com/repos/{OWNER}/{REPO}/code-scanning/alerts"
