@@ -1,14 +1,5 @@
-{
-    "alerts": [
-        {
-            "rule": {
-                "severity": "high"
-            }
-        },
-        {
-            "rule": {
-                "severity": "medium"
-            }
-        }
-    ]
-}
+[
+    { "rule": { "severity": "high" } },
+    { "rule": { "severity": "low" } },
+    { "rule": { "severity": "medium" } }
+]
