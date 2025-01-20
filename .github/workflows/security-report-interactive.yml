@@ -1,0 +1,61 @@
+name: Interactive GitHub Security Dashboard
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    types: [opened, synchronize, reopened]
+jobs:
+  generate-dashboard:
+    runs-on: ubuntu-latest
+
+    env:
+      GIT_TOKEN: ${{ secrets.GIT_TOKEN }}
+
+    steps:
+    # Step 1: Checkout the repository
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    # Step 2: Set up Python
+    - name: Set up Python 3.10
+      uses: actions/setup-python@v4
+      with:
+        python-version: 3.10
+
+    # Step 3: Install dependencies
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install requests plotly dash
+
+    # Step 4: Run the Python script
+    - name: Run security dashboard script
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        OWNER: pratiksha2805-eng # Replace this
+        REPO: EmployeeService          # Replace this
+      run: python interactive_Dashboard.py
+
+    # Step 5: Upload the graph as an artifact
+    - name: Upload graph
+      uses: actions/upload-artifact@v3
+      with:
+        name: github_alerts_graph
+        path: github_alerts_graph.png
+
+
+
+    - name: Send Email Report
+      uses: dawidd6/action-send-mail@v3
+      with:
+        server_address: smtp.gmail.com
+        server_port: 587
+        username: ${{ secrets.SMTP_USERNAME }}
+        password: ${{ secrets.SMTP_APP_PASSWORD }}
+        subject: "Weekly Security Report Interactive"
+        body: "Security reports attached."
+        to: "sony2887@gmail.com"
+        from: "pratikshatiwari10042@gmail.com"
+        attachments: security_report1.json, github_alerts_graph.png
