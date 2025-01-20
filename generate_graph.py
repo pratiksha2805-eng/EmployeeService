@@ -8,12 +8,19 @@ def load_json(file_path):
     try:
         with open(file_path, "r") as file:
             data = json.load(file)
-            if not isinstance(data, list):
-                raise ValueError("Expected a list of alerts in the JSON file.")
-            return data
-    except FileNotFoundError:
-        print(f"Error: File '{file_path}' not found.")
-        return []
+
+            # Debug: Print raw JSON data
+            print(f"Raw JSON data: {data}")
+
+            # Check if the data contains alerts
+            if isinstance(data, dict) and "alerts" in data:
+                return data["alerts"]
+
+            # If data is already a list, return it
+            if isinstance(data, list):
+                return data
+
+            raise ValueError("Expected a list of alerts or an 'alerts' key in the JSON file.")
     except json.JSONDecodeError as e:
         print(f"Error decoding JSON: {e}")
         return []
