@@ -64,7 +64,7 @@ def create_graph(severity_counts):
 
     # Create the bar chart
     plt.figure(figsize=(8, 5))
-    plt.pie(severities, counts, color=["red", "orange", "blue", "gray"])
+    plt.bar(severities, counts, color=["red", "orange", "blue", "gray"])
     plt.xlabel("Severity")
     plt.ylabel("Number of Alerts")
     plt.title("GitHub Code Scanning Alerts by Severity")
