@@ -1,8 +1,7 @@
 import json
+import os
 import matplotlib.pyplot as plt
 from collections import Counter
-import os
-
 
 # Load JSON data
 def load_json(file_path):
@@ -12,6 +11,9 @@ def load_json(file_path):
             if not isinstance(data, list):
                 raise ValueError("Expected a list of alerts in the JSON file.")
             return data
+    except FileNotFoundError:
+        print(f"Error: File '{file_path}' not found.")
+        return []
     except json.JSONDecodeError as e:
         print(f"Error decoding JSON: {e}")
         return []
@@ -46,17 +48,18 @@ def create_graph(severity_counts):
 # Main function
 def main():
     # Define file path
-    file_path = "security_report.json"  # Replace with the correct path
+    file_path = "security_report.json"  # Adjust this path as needed
 
-    # Debug: Print current directory and file existence
-    print(f"Current working directory: {os.getcwd()}")
-    print(f"File exists: {os.path.exists(file_path)}")
+    # Debug: Check if the file exists
+    if not os.path.exists(file_path):
+        print(f"Error: The file '{file_path}' does not exist.")
+        return
 
     # Load the JSON report
     data = load_json(file_path)
 
     # Debug: Print loaded data structure
-    print(f"Loaded data: {data[:2]}")
+    print(f"Loaded data: {data[:2]}")  # Print first two entries for debugging
 
     # Process data
     severity_counts = process_data(data)
