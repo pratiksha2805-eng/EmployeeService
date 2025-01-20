@@ -47,7 +47,7 @@ jobs:
 
     # Step 5: Run Python Script to Generate Graph
     - name: Generate security graph
-      run: python generate_graph.py
+      run: python generate_graph_remote.py
 
 
     - name: Send Email Report
