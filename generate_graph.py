@@ -55,7 +55,7 @@ def create_graph(severity_counts):
 # Main function
 def main():
     # Define file path
-    file_path = "security_report.json"  # Adjust this path as needed
+    file_path = "security-report-nested.json"  # Adjust this path as needed
 
     # Debug: Check if the file exists
     if not os.path.exists(file_path):
