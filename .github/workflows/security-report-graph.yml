@@ -39,7 +39,7 @@ jobs:
     # Step 4: Fetch Security Alerts via GitHub API
     - name: Fetch security alerts
       env:
-        GITHUB_TOKEN: ${{ secrets.GIT_TOKEN }}
+        GIT_TOKEN: ${{ secrets.GIT_TOKEN }}
       run: |
         curl -H "Authorization: token $GIT_TOKEN" \
              -H "Accept: application/vnd.github+json" \
