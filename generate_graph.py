@@ -3,6 +3,12 @@ import matplotlib.pyplot as plt
 from collections import Counter
 import os
 
+#get json file
+- name: Check for security report
+  run: |
+    ls -la
+    cat security_report.json
+
 # Load JSON data
 def load_json(file_path):
     try:
