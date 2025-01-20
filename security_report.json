@@ -1,0 +1,6 @@
+[
+    {"rule": {"severity": "error"}, "message": "Critical vulnerability detected."},
+    {"rule": {"severity": "warning"}, "message": "Potential issue in dependency."},
+    {"rule": {"severity": "note"}, "message": "Informational alert."},
+    {"rule": {"severity": "error"}, "message": "Another critical vulnerability."}
+]
