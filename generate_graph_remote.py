@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 from collections import Counter
 
 # GitHub API configuration
-GITHUB_API_URL = "https://api.github.com/repos/{owner}/{repo}/code-scanning/alerts"
+GITHUB_API_URL = "https://api.github.com/repos/pratiksha2805-eng/EmployeeService/code-scanning/alerts"
 GITHUB_TOKEN = os.getenv("GITHUB_TOKEN")  # Load token from environment variable
 
 # Fetch GitHub security scan data
