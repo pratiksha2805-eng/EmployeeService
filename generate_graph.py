@@ -3,6 +3,11 @@ import matplotlib.pyplot as plt
 from collections import Counter
 
 # Load JSON data
+
+with open(file_path, "r") as file:
+    raw_data = file.read()
+    print(f"Raw JSON content: {raw_data}")
+
 def load_json(file_path):
     try:
         with open(file_path, "r") as file:
