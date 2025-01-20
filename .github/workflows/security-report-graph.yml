@@ -48,6 +48,8 @@ jobs:
 
     # Step 5: Run Python Script to Generate Graph
     - name: Generate security graph
+      env:
+        GITHUB_TOKEN: ${{ secrets.GIT_TOKEN }}
       run: python generate_graph_remote.py
 
 
