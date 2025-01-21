@@ -1,69 +1,29 @@
-name: Interactive GitHub Security Dashboard
+name: Deploy Dash App to Azure Interactive Dashboard
 
 on:
   push:
     branches:
       - main
-  pull_request:
-    types: [opened, synchronize, reopened]
+
 jobs:
-  generate-dashboard:
+  build-and-deploy:
     runs-on: ubuntu-latest
-
-    env:
-      GIT_TOKEN: ${{ secrets.GIT_TOKEN }}
-
     steps:
-    # Step 1: Checkout the repository
-    - name: Checkout repository
-      uses: actions/checkout@v3
+      - name: Checkout Code
+        uses: actions/checkout@v3
 
-    # Step 2: Set up Python
-    - name: Set up Python 3.9
-      uses: actions/setup-python@v4
-      with:
-        python-version: 3.9
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
 
-    # Step 3: Install dependencies
-    - name: Install dependencies
-      run: |
-        python -m pip install --upgrade pip
-        pip install pandas plotly requests dash
+      - name: Install Dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
 
-    # Step 4: Run the Python script
-    - name: Run security dashboard script
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        OWNER: pratiksha2805-eng # Replace this
-        REPO: EmployeeService          # Replace this
-      run: python interactive_Dashboard.py
-
-    # Step 5: Upload the graph as an artifact
-    - name: Upload graph
-      uses: actions/upload-artifact@v3
-      with:
-        name: github_alerts_graph
-        path: github_alerts_graph.png
-
-
-    - name: Deploy to Azure Static Web Apps
-      uses: Azure/static-web-apps-deploy@v1
-      with:
-        azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN }}
-        deployment_action: "upload"  
-        app_location: "."            # Adjust if your app is in a subfolder
-        # output_location: "build"     # Adjust if your build folder has a different name
-        output_location: "." # Build output folder
-
-    - name: Send Email Report
-      uses: dawidd6/action-send-mail@v3
-      with:
-        server_address: smtp.gmail.com
-        server_port: 587
-        username: ${{ secrets.SMTP_USERNAME }}
-        password: ${{ secrets.SMTP_APP_PASSWORD }}
-        subject: "Weekly Security Report Interactive"
-        body: "Security reports attached."
-        to: "sony2887@gmail.com"
-        from: "pratikshatiwari10042@gmail.com"
-        attachments: security_report1.json, github_alerts_graph.png
+      - name: Deploy to Azure App Service
+        uses: azure/webapps-deploy@v2
+        with:
+          app-name: 'interactive-dashboard'
+          publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
