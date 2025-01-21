@@ -1,4 +1,4 @@
-name: Deploy Dash App to Azure Interactive Dashboard
+name:  Interactive Dashboard  - Deploy Dash App to Azure
 
 on:
   push:
