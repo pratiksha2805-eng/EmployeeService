@@ -28,7 +28,7 @@ jobs:
 
       - name: Run Python script
         run: |
-          python dashboard/Dashboard-Last30Days.py  # Replace with your script name
+          python dashboard/Dashboard-Last30Days.py & # Replace with your script name
 
       - name: Deploy to Azure Web App
         uses: azure/webapps-deploy@v3
