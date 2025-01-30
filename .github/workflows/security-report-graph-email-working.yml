@@ -50,7 +50,7 @@ jobs:
     - name: Generate security graph
       env:
         GITHUB_TOKEN: ${{ secrets.GIT_TOKEN }}
-      run: python generate_graph_remote.py
+      run: python generate_graph_email_png_working.py
 
 
     - name: Send Email Report
