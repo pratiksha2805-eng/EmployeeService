@@ -11,13 +11,13 @@ from datetime import datetime, timedelta
 # GitHub repository details
 OWNER = 'pratiksha2805-eng'
 REPO = 'EmployeeService'
-token = os.getenv("GIT_TOKEN")  # Load token from environment variable
+TOKEN = os.getenv("GIT_TOKEN")  # Load token from environment variable
 
 
 # Function to fetch code scanning alerts from GitHub
 def fetch_github_alerts(owner, repo, token):
     url = f'https://api.github.com/repos/{owner}/{repo}/code-scanning/alerts'
-    headers = {'Authorization': f'token {token}'}
+    headers = {'Authorization': f'token {TOKEN}'}
     response = requests.get(url, headers=headers)
     if response.status_code == 200:
         return response.json()
@@ -41,7 +41,7 @@ def process_alerts(alerts, days=30):
     return pd.DataFrame(data)
 
 # Fetch and process alerts
-alerts = fetch_github_alerts(OWNER, REPO, token)
+alerts = fetch_github_alerts(OWNER, REPO, TOKEN)
 df_alerts = process_alerts(alerts)
 
 # Initialize the Dash app
@@ -66,7 +66,7 @@ app.layout = html.Div([
 )
 def update_graph(n):
     # Fetch and process the latest alerts
-    alerts = fetch_github_alerts(OWNER, REPO, token)
+    alerts = fetch_github_alerts(OWNER, REPO, TOKEN)
     df_alerts = process_alerts(alerts)
     
     if df_alerts.empty:
