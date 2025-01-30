@@ -12,8 +12,10 @@ from datetime import datetime, timedelta
 OWNER = 'pratiksha2805-eng'
 REPO = 'EmployeeService'
 # TOKEN = os.getenv("GIT_TOKEN")  # Load token from environment variable
-GITHUB_TOKEN = os.getenv("GIT_TOKEN")  # Load token from environment variable
-
+# GITHUB_TOKEN = os.getenv("GIT_TOKEN")  # Load token from environment variable
+# # GitHub API configuration
+GITHUB_API_URL = "https://api.github.com/repos/pratiksha2805-eng/EmployeeService/code-scanning/alerts"
+GITHUB_TOKEN = os.getenv("GITHUB_TOKEN")  # Load token from environment variable
 
 # Function to fetch code scanning alerts from GitHub
 def fetch_github_alerts(owner, repo, token):
