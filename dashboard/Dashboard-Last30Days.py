@@ -18,7 +18,7 @@ GITHUB_TOKEN = os.getenv("GIT_TOKEN")  # Load token from environment variable
 # Function to fetch code scanning alerts from GitHub
 def fetch_github_alerts(owner, repo, token):
     url = f'https://api.github.com/repos/{owner}/{repo}/code-scanning/alerts'
-    headers = {'Authorization': f'token {TOKEN}'}
+    headers = {'Authorization': f'token {token}'}
     response = requests.get(url, headers=headers)
     if response.status_code == 200:
         return response.json()
@@ -42,7 +42,7 @@ def process_alerts(alerts, days=30):
     return pd.DataFrame(data)
 
 # Fetch and process alerts
-alerts = fetch_github_alerts(OWNER, REPO, TOKEN)
+alerts = fetch_github_alerts(OWNER, REPO, GITHUB_TOKEN)
 df_alerts = process_alerts(alerts)
 
 # Initialize the Dash app
