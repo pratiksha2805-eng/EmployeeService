@@ -41,7 +41,7 @@ def process_alerts(alerts, days=30):
     return pd.DataFrame(data)
 
 # Fetch and process alerts
-alerts = fetch_github_alerts(OWNER, REPO, GIT_TOKEN)
+alerts = fetch_github_alerts(OWNER, REPO, token)
 df_alerts = process_alerts(alerts)
 
 # Initialize the Dash app
@@ -66,7 +66,7 @@ app.layout = html.Div([
 )
 def update_graph(n):
     # Fetch and process the latest alerts
-    alerts = fetch_github_alerts(OWNER, REPO, GIT_TOKEN)
+    alerts = fetch_github_alerts(OWNER, REPO, token)
     df_alerts = process_alerts(alerts)
     
     if df_alerts.empty:
