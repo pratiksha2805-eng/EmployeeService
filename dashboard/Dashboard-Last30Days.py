@@ -11,7 +11,7 @@ from datetime import datetime, timedelta
 # GitHub repository details
 OWNER = 'pratiksha2805-eng'
 REPO = 'EmployeeService'
-GIT_TOKEN = os.getenv("GIT_TOKEN")  # Load token from environment variable
+token = os.getenv("GIT_TOKEN")  # Load token from environment variable
 
 
 # Function to fetch code scanning alerts from GitHub
