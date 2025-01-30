@@ -11,7 +11,8 @@ from datetime import datetime, timedelta
 # GitHub repository details
 OWNER = 'pratiksha2805-eng'
 REPO = 'EmployeeService'
-TOKEN = os.getenv("GIT_TOKEN")  # Load token from environment variable
+# TOKEN = os.getenv("GIT_TOKEN")  # Load token from environment variable
+GITHUB_TOKEN = os.getenv("GIT_TOKEN")  # Load token from environment variable
 
 
 # Function to fetch code scanning alerts from GitHub
@@ -66,7 +67,7 @@ app.layout = html.Div([
 )
 def update_graph(n):
     # Fetch and process the latest alerts
-    alerts = fetch_github_alerts(OWNER, REPO, TOKEN)
+    alerts = fetch_github_alerts(OWNER, REPO, TOKkEN)
     df_alerts = process_alerts(alerts)
     
     if df_alerts.empty:
