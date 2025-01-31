@@ -9,9 +9,18 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 
 # GitHub API Token and Repository Details
-GITHUB_TOKEN = "your_github_personal_access_token"
-OWNER = "your_github_username_or_org"
-REPO = "your_github_repository"
+# GITHUB_TOKEN = "your_github_personal_access_token"
+# OWNER = "your_github_username_or_org"
+# REPO = "your_github_repository"
+
+# GitHub repository details
+OWNER = 'pratiksha2805-eng'
+REPO = 'EmployeeService'
+# TOKEN = os.getenv("GIT_TOKEN")  # Load token from environment variable
+# GITHUB_TOKEN = os.getenv("GIT_TOKEN")  # Load token from environment variable
+# # GitHub API configuration
+GITHUB_API_URL = "https://api.github.com/repos/pratiksha2805-eng/EmployeeService/code-scanning/alerts"
+GITHUB_TOKEN = os.getenv("GITHUB_TOKEN")  # Load token from environment variable
 
 # Fetch Security Alerts from GitHub API
 def fetch_security_alerts():
