@@ -28,7 +28,7 @@ jobs:
 
       - name: Run Python script
         run: |
-          python dashboard/Dashboard-Last30Days.py & # Replace with your script name
+          python dashboard/Interactive_Dashboard_30Days_Mail.py & # Replace with your script name
 
       - name: Send Email Report
         uses: dawidd6/action-send-mail@v3
