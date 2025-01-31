@@ -5,6 +5,8 @@ from dash import dcc, html
 import plotly.express as px
 from flask import Flask
 import smtplib
+import os 
+
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 
