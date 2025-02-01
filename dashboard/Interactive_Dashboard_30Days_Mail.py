@@ -83,9 +83,9 @@ def generate_html_report(categories):
 
 # Send Email
 def send_email(report):
-    sender_email = "your_email@example.com"
-    receiver_email = "recipient@example.com"
-    password = "your_email_password"
+    sender_email = "pratikshatiwari10042@gmail.com"
+    receiver_email = "sony2887@gmail.com"
+    password = "mvzk hoty tmqe dvzm"
 
     msg = MIMEMultipart()
     msg['From'] = sender_email
